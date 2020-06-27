@@ -11,7 +11,8 @@ const useStyles = makeStyles(theme => ({
     minHeight: "100vh"
   },
   container: {
-    marginTop: theme.spacing(1.2)
+    marginTop: theme.spacing(1.2),
+    textAlign: 'center'
   },
   loading: {
     margin: theme.spacing(2)
@@ -59,7 +60,10 @@ export default function MovieSearch() {
       .then(res => {
         if (res.Response === "True" && page <= 100) {
           res.Search.forEach(result => {
-            if (result.Title === title) {
+            // if (result.Title === title) {
+            //   searchResults.current.push(result);
+            // }
+            if (result.Title.length < 50) {
               searchResults.current.push(result);
             }
           });
@@ -99,6 +103,7 @@ export default function MovieSearch() {
           break;
         }
       }
+      movie.link = "https://www.imdb.com/title/" + movie.imdbID;
       formattedMovies.push(movie);
     });
     console.log(formattedMovies);

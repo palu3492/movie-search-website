@@ -1,12 +1,16 @@
 import React from "react";
-import { Card, CardContent, CardMedia, Typography } from "@material-ui/core";
+import { Card, CardContent, CardActionArea, CardMedia, Typography, Link } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    display: "flex",
+  card: {
     margin: theme.spacing(1.5),
-    flexGrow: 1
+    flexGrow: 1,
+    minWidth: '280px'
+  },
+  items: {
+    display: "flex",
+    textDecoration: 'none!important'
   },
   image: {
     height: 150,
@@ -36,10 +40,11 @@ export default function Movie(props) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
-  const { title, rated, runtime, poster, rating } = props;
+  const { title, rated, runtime, poster, rating, link } = props;
 
   return (
-    <Card className={classes.root}>
+    <Card className={classes.card}>
+      <CardActionArea component={Link} href={link} target="_blank" rel="noopener" className={classes.items}>
       <CardMedia className={classes.image} image={poster} title={"poster"} />
       <CardContent className={classes.content}>
         <Typography component="h5" variant="h5">
@@ -74,6 +79,7 @@ export default function Movie(props) {
           </div>
         )}
       </CardContent>
+      </CardActionArea>
     </Card>
   );
 }

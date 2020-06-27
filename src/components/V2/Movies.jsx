@@ -6,7 +6,8 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
     flexWrap: "wrap",
-    marginTop: theme.spacing(1)
+    marginTop: theme.spacing(1),
+    textAlign: 'center'
   }
 }));
 
@@ -23,7 +24,7 @@ export default function Movies(props) {
     );
   }
   return (
-    <div className={classes.root}>
+    <div className={classes.root + " " + "movies"} >
       {props.movies.map((movie, index) => {
         return (
           <Movie
@@ -32,6 +33,7 @@ export default function Movies(props) {
             rating={movie.Rating}
             runtime={movie.Runtime}
             poster={movie.Poster}
+            link={movie.link}
             key={index}
           />
         );
